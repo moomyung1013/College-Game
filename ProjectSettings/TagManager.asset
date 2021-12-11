@@ -11,6 +11,7 @@ TagManager:
   - Award
   - Building
   - Machine
+  - Ground
   layers:
   - Default
   - TransparentFX

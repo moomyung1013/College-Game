@@ -69,4 +69,14 @@ public class GameManager : MonoBehaviour
         item.SetActive(false);
     }
 
+    public void GameOver()
+    {
+        
+    }
+
+    public void GameClear()
+    {
+
+    }
+
 }
