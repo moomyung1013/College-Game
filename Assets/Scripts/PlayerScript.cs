@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     public Rigidbody2D RB;
     public Animator AC;
-    [SerializeField] private float axis = 1.5f;
+    [SerializeField] private float speed = 1.5f;
     [SerializeField] private float jumpPower = 5.0f;
 
     private bool isJump = false;
@@ -16,10 +16,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
 
-        if (!AC.GetBool("IsGround") && !isJump)
-            AC.SetBool("IsGround", true);
-
-        RB.velocity = new Vector2(4 * axis, RB.velocity.y);
+        RB.velocity = new Vector2(4 * speed, RB.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,7 +27,11 @@ public class PlayerScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+        {
             isJump = false;
+            if (!AC.GetBool("IsGround"))
+                AC.SetBool("IsGround", true);
+        }
     }
 
     public void Jump()
