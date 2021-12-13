@@ -22,6 +22,14 @@ public class PlayerScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameManager.Instance.ItemCountInc(other.gameObject);
+
+        if(other.gameObject.CompareTag("F"))
+        {
+            UIManager.Instance.DecHeart(GameManager.Instance.GetHeartCount());
+
+            if (GameManager.Instance.GetHeartCount() == 3)
+                GameManager.Instance.GameOver();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,6 +40,8 @@ public class PlayerScript : MonoBehaviour
             if (!AC.GetBool("IsGround"))
                 AC.SetBool("IsGround", true);
         }
+        else if (collision.gameObject.CompareTag("EndGround"))
+            GameManager.Instance.GameClear();
     }
 
     public void Jump()

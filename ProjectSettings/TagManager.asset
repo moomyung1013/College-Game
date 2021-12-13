@@ -12,6 +12,7 @@ TagManager:
   - Building
   - Machine
   - Ground
+  - F
   layers:
   - Default
   - TransparentFX
