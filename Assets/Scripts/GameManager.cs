@@ -81,7 +81,8 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
-        item.SetActive(false);
+        //item.SetActive(false);
+        Destroy(item);
     }
 
     public int GetHeartCount()

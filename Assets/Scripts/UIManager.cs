@@ -30,8 +30,11 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);  // 씬이 전환되더라도 선언되었던 인스턴스가 파괴되지 않는다
     }
 
+    public GameObject[] hearts;
+
     public void DecHeart(int index)
     {
-        // TODO: 해당 index의 heart를 SetActive(false)로 하기
+        hearts[index - 1].SetActive(false);
+        hearts[index + 2].SetActive(true);
     }
 }

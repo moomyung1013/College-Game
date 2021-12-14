@@ -13,6 +13,9 @@ TagManager:
   - Machine
   - Ground
   - F
+  - EndGround
+  - Lab
+  - Club
   layers:
   - Default
   - TransparentFX
