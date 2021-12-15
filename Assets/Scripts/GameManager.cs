@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int[] majorList = new int[4] { 0, 0, 0, 0 };
     [SerializeField] private int[] ectActivityList = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
 
+    private string club = "";
+
     #region Ending
     private List<string> endingList = new List<string>();
     private string[] ectActivityEnding =
@@ -79,15 +81,29 @@ public class GameManager : MonoBehaviour
             case "F":
                 ectActivityList[(int)EctActivity.f]++;
                 break;
+            case "Friend":
+                ectActivityList[(int)EctActivity.friend]++;
+                break;
+            case "Lab":
+                ectActivityList[(int)EctActivity.lab]++;
+                break;
+            case "Club":
+                ectActivityList[(int)EctActivity.club]++;
+                break;
+            default:
+                return;
 
         }
         //item.SetActive(false);
         Destroy(item);
     }
 
-    public int GetHeartCount()
+    public int GetHeartCount() { return ectActivityList[(int)EctActivity.f]; }
+    public string GetClub() { return club; }
+    public void SetClub(string choice)
     {
-        return ectActivityList[(int)EctActivity.f];
+        club = choice;
+        ItemManager.Instance.ClubItemCreate(choice);
     }
 
     public void GameOver()

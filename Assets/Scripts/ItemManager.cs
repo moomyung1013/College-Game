@@ -28,7 +28,7 @@ public class ItemManager : MonoBehaviour
     }
 
     public GameObject[] majorItems;  // 생성할 전공 아이템
-    public GameObject[] clubItems; // 생성할 동아리 관련 아이템
+    public GameObject[] clubItems; // 생성할 동아리 관련 아이템 0-band, 1-soccer, 2-star, 3-volunteer
     public GameObject[] activityItems; // 기타 활동 아이템
 
     public GameObject labItem, fItem;
@@ -37,7 +37,10 @@ public class ItemManager : MonoBehaviour
     private List<int> xPoses = new List<int>();
     private float[] yPoses = new float[2] {-1f, 0.5f};
 
-    [SerializeField] private int count = 20;
+    [SerializeField]
+    private int count = 20;
+    private int fItemCount = 5;
+    private int clubItemCount = 10;
 
     private void Start()
     {
@@ -48,6 +51,9 @@ public class ItemManager : MonoBehaviour
         // Item 생성
         for (int i = 0; i < count; i++)
             ItemCreate();
+
+        for (int i = 0; i < fItemCount; i++)
+            FItemCreate();
     }
 
     private void ItemCreate()
@@ -57,6 +63,13 @@ public class ItemManager : MonoBehaviour
 
         GameObject item = majorItems[index];
         GameObject instance = Instantiate(item, spawnPos, Quaternion.identity);
+    }
+
+    private void FItemCreate()
+    {
+        int index = Random.Range(0, majorItems.Length);
+        Vector2 spawnPos = GetRandomPosition();
+        GameObject instance = Instantiate(fItem, spawnPos, Quaternion.identity);
     }
 
     private Vector2 GetRandomPosition()
@@ -72,4 +85,29 @@ public class ItemManager : MonoBehaviour
         return spawnPos;
     }
 
+    public void ClubItemCreate(string club)
+    {
+        GameObject clubItem = clubItems[0];
+        switch(club)
+        {
+            case "Band":
+                clubItem = clubItems[0];
+                break;
+            case "Soccer":
+                clubItem = clubItems[1];
+                break;
+            case "Star":
+                clubItem = clubItems[2];
+                break;
+            case "Volunteer":
+                clubItem = clubItems[3];
+                break;
+        }
+        for(int i = 0; i<clubItemCount; i++)
+        {
+            int index = Random.Range(0, majorItems.Length);
+            Vector2 spawnPos = GetRandomPosition();
+            GameObject instance = Instantiate(clubItem, spawnPos, Quaternion.identity);
+        }
+    }
 }

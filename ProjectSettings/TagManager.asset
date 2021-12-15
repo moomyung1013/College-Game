@@ -16,6 +16,10 @@ TagManager:
   - EndGround
   - Lab
   - Club
+  - Soccer
+  - Star
+  - Volunteer
+  - Band
   layers:
   - Default
   - TransparentFX

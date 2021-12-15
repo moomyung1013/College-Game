@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
             if (!AC.GetBool("IsGround"))
                 AC.SetBool("IsGround", true);
         }
-        else if (collision.gameObject.CompareTag("EndGround"))
+        if (collision.gameObject.CompareTag("EndGround"))
             GameManager.Instance.GameClear();
     }
 
