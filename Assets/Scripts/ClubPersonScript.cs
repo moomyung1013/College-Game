@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClubPersonScript : MonoBehaviour
 {
     public GameObject wordBox;
+    public Button communicationBtn;
     private bool isTrigger = false;
 
     private void Start()
     {
         wordBox.SetActive(false);
+        communicationBtn.onClick.AddListener(OnCommunicationBtnClick);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(GameManager.Instance.GetClub() == "")
